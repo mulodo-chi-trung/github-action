@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("elastic-cluster-240706-c07b618ca8cd.json")
+  credentials = file("elastic-cluster-ce656e122e71.json")
   project = var.project
   region = var.region
 }

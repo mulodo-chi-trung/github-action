@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "elastic-cluster-240706",
+  "private_key_id": "ce656e122e7119de0a3d84259d77519402796321",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDvCBVdaLUlZoOn\nawIANXNEnMN756zZkXbuZs4L4RsDDbugvMz+AvQAUBx9i48BdkL8s8KQp9ngH7B+\nB5j3SqrpM6+JO5OGHosnn9AJi4N41N2TkxJdgGeWAGDcBfIrsS9Kas1H/1Nk8TK2\n69hRBOI+z/VUq0ts/OKFYEpi65hY6zJt8EiN/3jJGk+EPpW5+VPzw0xfPCNc6aJ+\n8pyISqXQKvColk5/44ECCS2KhSs8ag3sqPOLc8JVk+tIFIrLbXXY2n9eLL3mVUDn\nLzfDKsI9OLyYoXr6ZAjpiYS7hsGGCy/45TODYq5wyuxjYDShKJuZNeUeXAW3UcX2\nuGwHDKVXAgMBAAECggEAdEsdgeWohDq9AN4KCin3G8GdRhIwQWYJU/HGe3cYmkK7\nL3fL0CWFqwVO5zHX8KEl9CZNGe3gDa+9QYPWwzGbt3vDAmRu4MjJcQzKvWoYG9iM\nuPjL7ZvESfGDLmjiKqm41V7i4w1w+GJ1BxP1mW1j2aV5uajhOHRMjRGM/1WaOF+8\nxfaFkKvkOK4Xisxwsp0Fn+M3JmSQ7VkM6nz96BnbFSMkKB8PsCRwE/G3pc/BChB6\nWbOkPKk+GjTO8EWrmU1fTj1RZ+HF/zhe0hCNamsDdgNR7FMMEAuQLCET5HAlCuID\nC5s4gB/2T0z9vAqFAKoJx5ZivwtdXSZd5vRiyoL6kQKBgQD/NZSooydXyVAx2gDH\nssQY+CEJ7c1ZuSanBBUInA4WHgA1QJf8qfsqydcOrtrhV5c/yUmYIWB3DWQwZiOV\n1aLF5wQq5VKhmOT9+setR6yj0wJFUvalh7jdOZLV98u82Fir/Y9T2gz3ustHNzYt\nyJ0TkemJe7TnxgHdFBOm4zyV2QKBgQDvxavgec91ZuS+7Oe3J00vxHHcfvCIB1HS\nUdjMJ/kgIIedkaMpXldC/MKDxLtHZfiwp5+zaH1ls4p8rKQMrXXE7VwyqTVV2nZe\n/SRBWxfAfDDtL84TzJxhN9ukLavEgv3NfS8X7MYCglzV+LzA8fjbUJekTyCz4Jkm\nA7I0UwQmrwKBgHwNH2WZaNZTFJgmz5pCWu+ILQcWgGrMhO1KHq9Aq9g0XQWFkFtQ\nhLYXxmFsvRgr62kl/o/kKW+1Iq4j98gtQCHSWURAlBnYp/aMn+KqpFA9kS0BVsK/\nZiyif61h9balsvRnG/Q2WXdRZN4JCFzY1wFcO5iIeTbwGJfN2n+UlS6BAoGBAN4p\n1hvkQemSMRkHAZye+dHsv2OC6vPfdFzgIXTpBNhTy9SgAQJvu4MCGGlne++n+EoW\nxs7BXo9BUGw8urRUdO7Gz8rRJe4qwcs52sID2XosmFjtFpEZ4TvjOcxh1On8RZaF\nC4Grjbz9dW99TcepbOApSJiiCLciwESM4C3DTfFZAoGBAJLoVczWFtENZ63qiWnf\n381uZFPvJqZjwuwPt7E+ww6FzmDmoaQG3WHf26vcjnmi4/BVC8+wYAZwqd0aU41a\nqujcAPtz8LKOReqAw0LAC+uCodbcEY7ZLnwy9509hvHkEhle1UW8EYUi+5PGdmWB\nK7kY/zOQF0zURiB0ONolqj7k\n-----END PRIVATE KEY-----\n",
+  "client_email": "trung-cluster-elasticsearch@elastic-cluster-240706.iam.gserviceaccount.com",
+  "client_id": "116838989633712362243",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/trung-cluster-elasticsearch%40elastic-cluster-240706.iam.gserviceaccount.com"
+}
