@@ -68,7 +68,7 @@ resource "kubernetes_stateful_set" "sfs_kube_elastic_search" {
   }
   spec {
     service_name = "es-nodes"
-    replicas = 3
+    replicas = 2
     selector {
       match_labels = {
         service = "elasticsearch"
