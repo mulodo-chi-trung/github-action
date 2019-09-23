@@ -3,7 +3,7 @@ jobs:
   terraform:
     working_directory: ~/github-action/
     docker:
-      - image: hashicorp/terraform:light
+      - image: hashicorp/terraform:0.12.9
     steps:
       - checkout
       - run:
