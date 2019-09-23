@@ -1,4 +1,3 @@
-version: 1
 jobs:
   terraform:
     working_directory: ~/github-action/
@@ -11,7 +10,6 @@ jobs:
           command: |
             terraform fmt -diff=true -check=true
 workflows:
-  version: 1
   terraform:
     jobs:
       - terraform
