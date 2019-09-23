@@ -15,3 +15,11 @@ workflows:
   terraform:
     jobs:
       - terraform
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
