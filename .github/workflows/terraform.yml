@@ -6,9 +6,6 @@ jobs:
     name: On Pull Request
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v1
-
     - name: Filter to PR Opened
       uses: actions/bin/filter@master
       with:
