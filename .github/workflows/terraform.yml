@@ -22,8 +22,8 @@ jobs:
       env:
         TF_ACTION_WORKING_DIR: '.'
         TF_ACTION_WORKSPACE: default
-      - name: terraform-apply
-      uses: hashicorp/terraform-github-actions/apply@v0.4.0
-      env:
-        TF_ACTION_WORKING_DIR: '.'
-        TF_ACTION_WORKSPACE: default
+      # - name: terraform-apply
+      # uses: hashicorp/terraform-github-actions/apply@v0.4.0
+      # env:
+      #   TF_ACTION_WORKING_DIR: '.'
+      #   TF_ACTION_WORKSPACE: default
