@@ -1,32 +1,32 @@
-name: Terraform1
-on: [pull_request]
-
+on: pull_request
+name: Terraform
 jobs:
-  on-pull-request:
-    name: On Pull Request
+  filter-to-pr-open-synced:
     runs-on: ubuntu-latest
     steps:
-    - name: Filter to PR Opened
+    - uses: actions/checkout@master
+    - name: filter-to-pr-open-synced
       uses: actions/bin/filter@master
       with:
-        args: "action 'opened|synchronize'"
-    
-    - name: Terraform - Format
-      uses: hashicorp/terraform-github-actions/fmt@v0.3.5
+        args: action 'opened|synchronize'
+    - name: terraform-fmt
+      uses: hashicorp/terraform-github-actions/fmt@v0.4.0
       env:
-        TF_ACTION_WORKING_DIR: "."
-
-    - name: Terraform - Init
-      uses: hashicorp/terraform-github-actions/init@v0.3.5
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TF_ACTION_WORKING_DIR: './terraform'
+    - name: terraform-init
+      uses: hashicorp/terraform-github-actions/init@v0.4.0
       env:
-        TF_ACTION_WORKING_DIR: "."
-
-    - name: Terraform - Validate
-      uses: hashicorp/terraform-github-actions/validate@v0.3.5
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TF_ACTION_WORKING_DIR: './terraform'
+    - name: terraform-validate
+      uses: hashicorp/terraform-github-actions/validate@v0.4.0
       env:
-        TF_ACTION_WORKING_DIR: "."
-
-    - name: Terraform - Plan
-      uses: hashicorp/terraform-github-actions/plan@v0.3.5
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TF_ACTION_WORKING_DIR: './terraform'
+    - name: terraform-plan
+      uses: hashicorp/terraform-github-actions/plan@v0.4.0
       env:
-        TF_ACTION_WORKING_DIR: "."
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TF_ACTION_WORKING_DIR: './terraform'
+        TF_ACTION_WORKSPACE: default
