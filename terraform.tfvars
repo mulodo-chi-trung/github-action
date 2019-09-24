@@ -1,6 +1,6 @@
 username = "chitrung"
 password = "chitrungdepzainhucnach"
-gcp_node_count = 5
+gcp_node_count = 9
 cluster_name = "elastic-search-cluster"
 project = "elastic-cluster-240706"
 zone = "us-east1-c"
