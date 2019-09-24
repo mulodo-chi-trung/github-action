@@ -1,12 +1,12 @@
 provider "google" {
   credentials = file("elastic-cluster-ce656e122e71.json")
-  project = var.project
-  region = var.region
+  project     = var.project
+  region      = var.region
 }
 
 resource "google_container_cluster" "gcp_kubernetes" {
-  name = var.cluster_name
-  location = var.zone
+  name               = var.cluster_name
+  location           = var.zone
   initial_node_count = var.gcp_node_count
   master_auth {
     username = var.username
@@ -44,15 +44,15 @@ resource "kubernetes_service" "svc_kube_elastic_search" {
       service = "elasticsearch"
     }
     port {
-      name = "external"
-      port = 9200
-      protocol = "TCP"
+      name        = "external"
+      port        = 9200
+      protocol    = "TCP"
       target_port = 9200
     }
     port {
-      name = "internal"
-      port = 9300
-      protocol = "TCP"
+      name        = "internal"
+      port        = 9300
+      protocol    = "TCP"
       target_port = 9300
     }
   }
@@ -68,7 +68,7 @@ resource "kubernetes_stateful_set" "sfs_kube_elastic_search" {
   }
   spec {
     service_name = "es-nodes"
-    replicas = 2
+    replicas     = 2
     selector {
       match_labels = {
         service = "elasticsearch"
@@ -83,43 +83,43 @@ resource "kubernetes_stateful_set" "sfs_kube_elastic_search" {
       spec {
         termination_grace_period_seconds = 300
         init_container {
-          name = "ulimit"
-          image = "busybox"
+          name    = "ulimit"
+          image   = "busybox"
           command = ["sh", "-c", "ulimit", "-n", "65536"]
           security_context {
             privileged = "true"
           }
         }
         init_container {
-          name = "vm-max-map-count"
-          image = "busybox"
+          name    = "vm-max-map-count"
+          image   = "busybox"
           command = ["sysctl", "-w", "vm.max_map_count=262144"]
           security_context {
             privileged = "true"
           }
         }
         init_container {
-          name = "volume-permission"
-          image = "busybox"
+          name    = "volume-permission"
+          image   = "busybox"
           command = ["chown", "-R", "1000:1000", "/usr/share/elasticsearch/data"]
           security_context {
             privileged = "true"
           }
           volume_mount {
-            name = "data"
+            name       = "data"
             mount_path = "/usr/share/elasticsearch/data"
           }
         }
         container {
-          name = "elasticsearch"
+          name  = "elasticsearch"
           image = "docker.elastic.co/elasticsearch/elasticsearch:6.4.3"
           port {
             container_port = 9200
-            name = "http"
+            name           = "http"
           }
           port {
             container_port = 9300
-            name = "tcp"
+            name           = "tcp"
           }
           resources {
             requests {
@@ -130,7 +130,7 @@ resource "kubernetes_stateful_set" "sfs_kube_elastic_search" {
             }
           }
           env {
-            name = "cluster.name"
+            name  = "cluster.name"
             value = "elasticsearch-cluster"
           }
           env {
@@ -138,19 +138,19 @@ resource "kubernetes_stateful_set" "sfs_kube_elastic_search" {
             value_from {
               field_ref {
                 field_path = "metadata.name"
-              }   
-            } 
+              }
+            }
           }
           env {
-            name = "discovery.zen.ping.unicast.hosts"
+            name  = "discovery.zen.ping.unicast.hosts"
             value = "elasticsearch-0.es-nodes.default.svc.cluster.local,elasticsearch-1.es-nodes.default.svc.cluster.local,elasticsearch-2.es-nodes.default.svc.cluster.local"
           }
           env {
-            name = "ES_JAVA_OPTS"
+            name  = "ES_JAVA_OPTS"
             value = "-Xms512m -Xmx512m"
           }
           volume_mount {
-            name = "data"
+            name       = "data"
             mount_path = "/usr/share/elasticsearch/data"
           }
         }
@@ -161,7 +161,7 @@ resource "kubernetes_stateful_set" "sfs_kube_elastic_search" {
         name = "data"
       }
       spec {
-        access_modes = ["ReadWriteOnce"]
+        access_modes       = ["ReadWriteOnce"]
         storage_class_name = "standard"
         resources {
           requests = {
@@ -170,7 +170,7 @@ resource "kubernetes_stateful_set" "sfs_kube_elastic_search" {
         }
       }
     }
-  } 
+  }
 }
 
 resource "kubernetes_service" "svc_kube_kibana" {
@@ -188,7 +188,7 @@ resource "kubernetes_service" "svc_kube_kibana" {
       run = "kibana"
     }
     port {
-      port = 8081
+      port        = 8081
       target_port = 5601
     }
   }
@@ -197,7 +197,7 @@ resource "kubernetes_service" "svc_kube_kibana" {
 resource "kubernetes_deployment" "depl_kube_kibana" {
   depends_on = [google_container_cluster.gcp_kubernetes]
   metadata {
-    name = "kibana"
+    name      = "kibana"
     namespace = "default"
   }
   spec {
@@ -216,7 +216,7 @@ resource "kubernetes_deployment" "depl_kube_kibana" {
 
       spec {
         container {
-          name = "kibana"
+          name  = "kibana"
           image = "docker.elastic.co/kibana/kibana-oss:6.4.3"
           resources {
             limits {
@@ -227,7 +227,7 @@ resource "kubernetes_deployment" "depl_kube_kibana" {
             }
           }
           env {
-            name = "ELASTICSEARCH_URL"
+            name  = "ELASTICSEARCH_URL"
             value = "http://es-nodes:9200"
           }
           port {
@@ -281,8 +281,8 @@ resource "kubernetes_daemonset" "deamon_fluent" {
     name      = "fluentd"
     namespace = "default"
     labels = {
-      k8s-app = "fluentd-logging"
-      version =  "v1"
+      k8s-app                         = "fluentd-logging"
+      version                         = "v1"
       "kubernetes.io/cluster-service" = "true"
     }
   }
@@ -290,8 +290,8 @@ resource "kubernetes_daemonset" "deamon_fluent" {
   spec {
     selector {
       match_labels = {
-        k8s-app = "fluentd-logging"
-        version =  "v1"
+        k8s-app                         = "fluentd-logging"
+        version                         = "v1"
         "kubernetes.io/cluster-service" = "true"
       }
     }
@@ -299,8 +299,8 @@ resource "kubernetes_daemonset" "deamon_fluent" {
 
       metadata {
         labels = {
-          k8s-app = "fluentd-logging"
-          version =  "v1"
+          k8s-app                         = "fluentd-logging"
+          version                         = "v1"
           "kubernetes.io/cluster-service" = "true"
         }
       }
@@ -308,7 +308,7 @@ resource "kubernetes_daemonset" "deamon_fluent" {
       spec {
         service_account_name = "fluentd"
         toleration {
-          key = "node-role.kubernetes.io/master"
+          key    = "node-role.kubernetes.io/master"
           effect = "NoSchedule"
         }
         automount_service_account_token = "true"
@@ -316,19 +316,19 @@ resource "kubernetes_daemonset" "deamon_fluent" {
           image = "fluent/fluentd-kubernetes-daemonset:v1.3-debian-elasticsearch"
           name  = "fluentd"
           env {
-            name = "FLUENT_ELASTICSEARCH_HOST"
+            name  = "FLUENT_ELASTICSEARCH_HOST"
             value = "es-nodes"
           }
           env {
-            name = "FLUENT_ELASTICSEARCH_PORT"
+            name  = "FLUENT_ELASTICSEARCH_PORT"
             value = "9200"
           }
           env {
-            name = "FLUENT_ELASTICSEARCH_SCHEME"
+            name  = "FLUENT_ELASTICSEARCH_SCHEME"
             value = "http"
           }
           env {
-            name = "FLUENT_UID"
+            name  = "FLUENT_UID"
             value = "0"
           }
           resources {
@@ -341,13 +341,13 @@ resource "kubernetes_daemonset" "deamon_fluent" {
             }
           }
           volume_mount {
-            name = "varlog"
+            name       = "varlog"
             mount_path = "/var/log"
           }
           volume_mount {
-            name = "varlibdockercontainers"
+            name       = "varlibdockercontainers"
             mount_path = "/var/lib/docker/containers"
-            read_only = "true"
+            read_only  = "true"
           }
         }
         termination_grace_period_seconds = 30
