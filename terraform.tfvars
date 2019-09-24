@@ -1,5 +1,5 @@
 username = "chitrung"
-password = "chitrungdepzainhutnhithegioi"
+password = "chitrungdepzai"
 gcp_node_count = 2
 cluster_name = "elastic-search-cluster"
 project = "elastic-cluster-240706"
