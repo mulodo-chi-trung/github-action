@@ -5,8 +5,8 @@ provider "google" {
 }
 
 resource "google_container_cluster" "gcp_kubernetes" {
-  name               = var.cluster_name
-  location           = var.zone
+  name = var.cluster_name
+  location = var.zone
   initial_node_count = var.gcp_node_count
   master_auth {
     username = var.username
@@ -28,6 +28,16 @@ resource "google_container_cluster" "gcp_kubernetes" {
     tags = ["dev", "demo"]
   }
 }
+
+provider "kubernetes" {
+  host = "https://${google_container_cluster.gcp_kubernetes.endpoint}"
+  username = "${google_container_cluster.gcp_kubernetes.master_auth.0.username}"
+  password = "${google_container_cluster.gcp_kubernetes.master_auth.0.password}"
+  client_certificate = "${base64decode(google_container_cluster.gcp_kubernetes.master_auth.0.client_certificate)}"
+  client_key = "${base64decode(google_container_cluster.gcp_kubernetes.master_auth.0.client_key)}"
+  cluster_ca_certificate = "${base64decode(google_container_cluster.gcp_kubernetes.master_auth.0.cluster_ca_certificate)}"
+}
+
 
 resource "kubernetes_service" "svc_kube_elastic_search" {
   depends_on = [google_container_cluster.gcp_kubernetes]
