@@ -1,29 +1,29 @@
-on: pull_request
-name: TrungTest1
-jobs:
-  filter-to-pr-open-synced:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: filter-to-pr-open-synced
-      uses: actions/bin/filter@master
-      with:
-        args: action 'opened|synchronize'
-    - name: terraform-init
-      uses: hashicorp/terraform-github-actions/init@v0.4.0
-      env:
-        TF_ACTION_WORKING_DIR: '.'
-    - name: terraform-validate
-      uses: hashicorp/terraform-github-actions/validate@v0.4.0
-      env:
-        TF_ACTION_WORKING_DIR: '.'
-    - name: terraform-plan
-      uses: hashicorp/terraform-github-actions/plan@v0.4.0
-      env:
-        TF_ACTION_WORKING_DIR: '.'
-        TF_ACTION_WORKSPACE: default
-      # - name: terraform-apply
-      # uses: hashicorp/terraform-github-actions/apply@v0.4.0
-      # env:
-      #   TF_ACTION_WORKING_DIR: '.'
-      #   TF_ACTION_WORKSPACE: default
+# on: pull_request
+# name: TrungTest1
+# jobs:
+#   filter-to-pr-open-synced:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@master
+#     - name: filter-to-pr-open-synced
+#       uses: actions/bin/filter@master
+#       with:
+#         args: action 'opened|synchronize'
+#     - name: terraform-init
+#       uses: hashicorp/terraform-github-actions/init@v0.4.0
+#       env:
+#         TF_ACTION_WORKING_DIR: '.'
+#     - name: terraform-validate
+#       uses: hashicorp/terraform-github-actions/validate@v0.4.0
+#       env:
+#         TF_ACTION_WORKING_DIR: '.'
+#     - name: terraform-plan
+#       uses: hashicorp/terraform-github-actions/plan@v0.4.0
+#       env:
+#         TF_ACTION_WORKING_DIR: '.'
+#         TF_ACTION_WORKSPACE: default
+#       # - name: terraform-apply
+#       # uses: hashicorp/terraform-github-actions/apply@v0.4.0
+#       # env:
+#       #   TF_ACTION_WORKING_DIR: '.'
+#       #   TF_ACTION_WORKSPACE: default
