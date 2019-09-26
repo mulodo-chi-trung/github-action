@@ -8,7 +8,7 @@ jobs:
     - name: merged-prs-filter
       uses: actions/bin/filter@master
       with:
-        args: merged true
+        args: merged false
     - name: base-branch-filter
       uses: hashicorp/terraform-github-actions/base-branch-filter@v0.4.0
       with:
