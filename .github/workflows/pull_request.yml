@@ -1,18 +1,14 @@
-on: pull_request
-name: Apply_Test_1
+on: push
+name: Apply_Test_2
 jobs:
-  merged-prs-filter:
+  master-branch-filter:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: merged-prs-filter
+    - name: master-branch-filter
       uses: actions/bin/filter@master
       with:
-        args: merged false
-    - name: base-branch-filter
-      uses: hashicorp/terraform-github-actions/base-branch-filter@v0.4.0
-      with:
-        args: ^master$
+        args: branch master
     - name: terraform-init-apply
       uses: hashicorp/terraform-github-actions/init@v0.4.0
       env:
