@@ -1,5 +1,7 @@
 on: pull_request
 name: Apply
+on: pull_request
+name: Apply
 jobs:
   merged-prs-filter:
     runs-on: ubuntu-latest
@@ -8,7 +10,11 @@ jobs:
     - name: merged-prs-filter
       uses: actions/bin/filter@master
       with:
-        args: action 'opened|synchronize'
+        args: merged true
+    - name: base-branch-filter
+      uses: hashicorp/terraform-github-actions/base-branch-filter@v0.4.0
+      with:
+        args: ^master$
     - name: terraform-init-apply
       uses: hashicorp/terraform-github-actions/init@v0.4.0
       env:
