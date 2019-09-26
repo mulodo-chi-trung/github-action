@@ -1,7 +1,5 @@
 on: pull_request
-name: Apply
-on: pull_request
-name: Apply
+name: Apply_Test_1
 jobs:
   merged-prs-filter:
     runs-on: ubuntu-latest
