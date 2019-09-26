@@ -4,7 +4,7 @@ terraform {
     organization = "mulodo_test_team"
 
     workspaces {
-      name = "github-action-test-1"
+      name = "github-action"
     }
   }
 }
